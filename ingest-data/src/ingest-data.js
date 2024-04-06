@@ -18,7 +18,7 @@ async function processDocument() {
     const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
     const namespace = "mohanganesh.benefits";
     const [dbName, collectionName] = namespace.split(".");
-    const dbConfig = client.db(dbName).collection(collectionName);
+    const collection = client.db(dbName).collection(collectionName);
 
     const pdfFilePath = "attention-is-all-you-need.pdf";
     const pdfLoader = new PDFLoader(pdfFilePath);
@@ -39,10 +39,11 @@ async function processDocument() {
       docs,
       embeddings,
       {
-        dbConfig,
+        collection,
         indexName: "benefits_vector_index",
         textKey: "raw_text",
         embeddingKey: "raw_text_embedding",
+        primaryKey: "_id",
       }
     );
 
