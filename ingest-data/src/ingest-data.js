@@ -18,22 +18,32 @@ async function processDocument() {
     const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
     const namespace = "mohanganesh.benefits";
     const [dbName, collectionName] = namespace.split(".");
-    const collection = client.db(dbName).collection(collectionName);
+    const dbConfig = client.db(dbName).collection(collectionName);
 
     const pdfFilePath = "attention-is-all-you-need.pdf";
     const pdfLoader = new PDFLoader(pdfFilePath);
-    const docs = await pdfLoader.load();
+    const pdfdocs = await pdfLoader.load();
     const splitter = new RecursiveCharacterTextSplitter();
-    const splitDocuments = await splitter.splitDocuments(docs);
-    console.log(splitDocuments.length);
+    const docs = await splitter.splitDocuments(pdfdocs);
+    console.log("Split Documents lenth is " + docs.length);
     const embeddings = new GoogleGenerativeAIEmbeddings({
       apiKey: GOOGLE_API_KEY,
     });
 
+    //readonly collection: Collection<MongoDBDocument>;
+    //readonly indexName?: string;
+    //readonly textKey?: string;
+    //readonly embeddingKey?: string;
+    //readonly primaryKey?: string;
     const vectorstore = await MongoDBAtlasVectorSearch.fromDocuments(
-      splitDocuments,
+      docs,
       embeddings,
-      collection
+      {
+        dbConfig,
+        indexName: "benefits_vector_index",
+        textKey: "raw_text",
+        embeddingKey: "raw_text_embedding",
+      }
     );
 
     const assignedIds = await vectorstore.addDocuments([
