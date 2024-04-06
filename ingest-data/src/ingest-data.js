@@ -7,26 +7,29 @@ import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 dotenv.config();
 
+const client = new MongoClient(
+  "mongodb+srv://vector-embeddings:marathon@mohanganesh.8fkkmtz.mongodb.net/?retryWrites=true&w=majority&appName=mohanganesh"
+);
 /**
  *
  */
 async function processDocument() {
   try {
-    const client = new MongoClient(process.env.MONGODB_URI || "");
-    const VERTEX_API_KEY = process.env.VERTEX_API_KEY;
-    const namespace = "health.benefits";
+    const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+    const namespace = "mohanganesh.benefits";
     const [dbName, collectionName] = namespace.split(".");
     const collection = client.db(dbName).collection(collectionName);
 
-    const pdfFilePath = "/WPA_2024_ACA_Brochure.pdf";
+    const pdfFilePath = "attention-is-all-you-need.pdf";
     const pdfLoader = new PDFLoader(pdfFilePath);
     const docs = await pdfLoader.load();
     const splitter = new RecursiveCharacterTextSplitter();
     const splitDocuments = await splitter.splitDocuments(docs);
     console.log(splitDocuments.length);
     const embeddings = new GoogleGenerativeAIEmbeddings({
-      apiKey: VERTEX_API_KEY,
+      apiKey: GOOGLE_API_KEY,
     });
+
     const vectorstore = await MongoDBAtlasVectorSearch.fromDocuments(
       splitDocuments,
       embeddings,
@@ -37,6 +40,7 @@ async function processDocument() {
       { pageContent: "upsertable", metadata: {} },
     ]);
 
+    console.log(assignedIds);
     const upsertedDocs = [{ pageContent: "overwritten", metadata: {} }];
     await vectorstore.addDocuments(upsertedDocs, { ids: assignedIds });
   } catch (err) {
