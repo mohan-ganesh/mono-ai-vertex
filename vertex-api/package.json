@@ -1,0 +1,32 @@
+{
+  "name": "vertex-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/startup.js",
+    "ping": "node src/ping-gemini.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/vertexai": "^0.5.0",
+    "@langchain/community": "^0.0.44",
+    "@langchain/google-genai": "^0.0.10",
+    "@langchain/google-vertexai": "^0.0.2",
+    "@langchain/google-vertexai-web": "^0.0.2",
+    "@langchain/mongodb": "^0.0.1",
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "langchain": "^0.1.31",
+    "mongodb": "^6.5.0",
+    "pdf-parse": "^1.1.1",
+    "redis": "^4.6.13",
+    "uuid": "^9.0.1"
+  }
+}
