@@ -5,7 +5,7 @@ let redisClient;
  */
 export async function redisConnect() {
   try {
-    console.log("Connecting to Redis server...");
+    console.log("redisConnect() - connecting to redis server...");
 
     const redisOptions = {
       username: process.env.REDIS_USERNAME,
@@ -15,10 +15,13 @@ export async function redisConnect() {
         port: process.env.REDIS_PORT,
       },
     };
+
+    //console.log("redis details " + JSON.stringify(redisOptions));
+
     redisClient = await createClient(redisOptions)
       .on("error", (err) => console.log("Redis Client Error", err))
       .on("connect", () => {
-        console.log("Connected to Redis server.");
+        console.log("redisConnect() - connected to redis server.");
       })
       .connect();
   } catch (error) {

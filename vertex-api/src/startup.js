@@ -1,13 +1,24 @@
 import express from "express";
 import routes from "./routes/routes.js";
 import dotenv from "dotenv";
+import cors from "cors";
 import { connectMongoDB } from "./db/mongodb.js";
 import { redisConnect } from "./db/redis.js";
+import bodyParser from "express";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
+app.use(cors());
 
 async function startWebApp() {
   try {
@@ -32,7 +43,7 @@ async function startWebApp() {
 
 startWebApp()
   .then(() => {
-    console.log("Lets do this!!!");
+    console.log("server started and ready to serve!!!");
   })
   .catch((error) => {
     console.error(error);

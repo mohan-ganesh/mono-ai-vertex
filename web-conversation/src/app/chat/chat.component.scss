@@ -1,0 +1,62 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 92vh; /* Make the container take up the full viewport height */
+  }
+  
+  .chat-window {
+    flex: 1; /* Make the chat window take up remaining space */
+    overflow-y: auto; /* Allow vertical scrolling if needed */
+    border: 0px solid #ccc; /* Optional: Add a border for visual clarity */
+    padding: 10px;
+    border-radius: 5px; /* Set border radius to 10px to make it curved */
+  }
+  
+  .input-area {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f0f0f0; /* Optional: Add a background color */
+  }
+  
+  .input-area input {
+    flex: 1; /* Make the input take up remaining space */
+    margin-right: 10px; /* Add some spacing between input and button */
+  }
+  
+
+  .input-area textarea {
+    flex: 1; /* Make the textarea take up remaining space */
+    margin-right: 10px; /* Add some spacing between textarea and button */
+    border-radius: 10px; /* Set border radius to 10px to make it curved */
+  }
+  
+  
+
+  .user-message {
+  margin-bottom: 10px; 
+  border-bottom: 0px solid #ccc; 
+}
+
+.bot-message {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #a3c9ff;
+    bottom: 2px;
+}
+
+
+
+.input-area button {
+    background-color:rgb(0, 120, 193); /* Set button background color to yellow */
+    border:none ; /* Remove button border */
+    padding: 10px 20px; /* Add padding to button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    border-radius: 10px; /* Set border radius to 10px to make it curved */
+    font-weight: bold; /* Make button text bold */
+    color: white
+  }
+  
+  .input-area button:hover {
+    background-color: #ffd700; /* Change button background color on hover */
+  }
+  

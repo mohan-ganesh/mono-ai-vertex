@@ -1,0 +1,27 @@
+<div class="chat-container">
+    <div class="chat-window">
+        <!-- Chat messages -->
+        <div *ngFor="let message of messages">
+            <div *ngIf="message.isUser" class="user-message">
+                <span><b>You : </b></span>
+                {{ message.content }}
+            </div>
+            <div *ngIf="!message.isUser" class="bot-message">
+                <span><b>Gemini : </b></span>
+                {{ message.content }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Textbox input at the bottom -->
+<!-- who are the authors of attention is all you need topic-->
+<div class="input-area">
+    <!--
+    <textarea type="text" rows="2" [(ngModel)]="newMessage" placeholder="Type your message here...">
+    <button (click)="sendMessage(newMessage)">Send</button>
+-->
+    <textarea rows="3" [(ngModel)]="newMessage" placeholder="Type your message here..."
+        (keyup.enter)="sendMessage(newMessage)"></textarea>
+    <button (click)="sendMessage(newMessage)">Send</button>
+</div>
