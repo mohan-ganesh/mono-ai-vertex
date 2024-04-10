@@ -30,7 +30,7 @@
     flex: 1; /* Make the textarea take up remaining space */
     margin-right: 10px; /* Add some spacing between textarea and button */
     border-radius: 15px; /* Set border radius to 10px to make it curved */
-    border-color: #a3c9ff;
+    border: 1px solid #e3e9f3;
     box-sizing: border-box;
     font-family: Poppins, sans-serif;
     font-size: 1.17em;
@@ -53,16 +53,17 @@
 
 
 .input-area button {
-    background-color:rgb(0, 120, 193); /* Set button background color to yellow */
+    background-color:#fc7307; /* Set button background color to yellow */
     border:none ; /* Remove button border */
     padding: 10px 20px; /* Add padding to button */
     cursor: pointer; /* Change cursor to pointer on hover */
     border-radius: 10px; /* Set border radius to 10px to make it curved */
     font-weight: bold; /* Make button text bold */
     color: white
+    
   }
   
   .input-area button:hover {
-    background-color: #ffd700; /* Change button background color on hover */
+    background-color: #fc7307; /* Change button background color on hover */
   }
   
