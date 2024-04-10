@@ -21,7 +21,7 @@
     <textarea type="text" rows="2" [(ngModel)]="newMessage" placeholder="Type your message here...">
     <button (click)="sendMessage(newMessage)">Send</button>
 -->
-    <textarea rows="3" [(ngModel)]="newMessage" placeholder="Type your message here..."
+    <textarea rows="3" [(ngModel)]="newMessage" placeholder="Enter a prompt here..."
         (keyup.enter)="sendMessage(newMessage)"></textarea>
     <button (click)="sendMessage(newMessage)">Send</button>
 </div>

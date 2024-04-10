@@ -1,7 +1,7 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 92vh; /* Make the container take up the full viewport height */
+    height: 90vh; /* Make the container take up the full viewport height */
   }
   
   .chat-window {
@@ -16,7 +16,8 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #f0f0f0; /* Optional: Add a background color */
+    box-sizing: border-box;
+    /*background-color: #f0f0f0; /* Optional: Add a background color */
   }
   
   .input-area input {
@@ -28,7 +29,11 @@
   .input-area textarea {
     flex: 1; /* Make the textarea take up remaining space */
     margin-right: 10px; /* Add some spacing between textarea and button */
-    border-radius: 10px; /* Set border radius to 10px to make it curved */
+    border-radius: 15px; /* Set border radius to 10px to make it curved */
+    border-color: #a3c9ff;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+    font-size: 1.17em;
   }
   
   
@@ -42,6 +47,7 @@
     margin-bottom: 10px;
     border-bottom: 1px solid #a3c9ff;
     bottom: 2px;
+    padding-bottom: 10px;
 }
 
 

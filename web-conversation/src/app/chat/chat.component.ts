@@ -14,7 +14,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialize chat history
-    this.messages.push({ content: "Welcome to the chat! ", isUser: false });
+    //this.messages.push({ content: "Welcome to the chat! ", isUser: false });
   }
 
   sendMessage(message: string) {
