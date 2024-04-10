@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { environment } from "../../environments/environment"
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -8,9 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ChatService {
 
-  private apiUrl = 'https://vertex-serach-api-sn5rsq6dda-uc.a.run.app/conversation';
-
-  //private apiUrl = 'http://localhost:3000/conversation';
+  private apiUrl = environment.conversation_api_url;
 
   constructor(private http: HttpClient) { }
 

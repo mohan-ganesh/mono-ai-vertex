@@ -1,0 +1,40 @@
+
+
+.header .logo {
+    color: #0d6efd;
+}
+
+.card {
+    background-color: #2e4a62;
+    border-radius: 15px;
+    padding: 40px 50px;
+    margin: 20px 0;
+    position: relative;
+    
+}
+
+.card-header {
+    margin: 5px 0;
+    vertical-align: middle;
+    padding: 3px;
+    text-align: center;
+}
+
+.footer {
+    margin: 5px 0;
+    vertical-align: middle;
+    padding: 0;
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    color: #333;
+    height: 60px;
+    padding: 0 0px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
