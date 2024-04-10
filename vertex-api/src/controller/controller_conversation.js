@@ -43,7 +43,7 @@ export async function conversationController(req, res, _) {
         verbose: false,
         modelName: "gemini-pro",
         maxOutputTokens: 2048,
-        temperature: 0.8,
+        temperature: 0.9,
         safetySettings: [
           {
             category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -57,7 +57,7 @@ export async function conversationController(req, res, _) {
       const retriever = vectorstore.asRetriever();
 
       const questionPrompt = ChatPromptTemplate.fromTemplate(`
-    Answer the user's question from the following context to your best:
+    Answer the user's question from the following context to your best to describe as much as you can:
     {context}
     Question: {input}    
     `);
