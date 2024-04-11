@@ -15,11 +15,11 @@
         <!-- Chat messages -->
         <div *ngFor="let message of messages">
             <div *ngIf="message.isUser" class="user-message">
-                <span><b>You : </b></span>
+                <span><b>You</b><br></span>
                 {{ message.content }}
             </div>
             <div *ngIf="!message.isUser" class="bot-message">
-                <span><b>Gemini : </b></span>
+                <span><b>Gemini</b><br></span>
 
                 {{ message.content }}
             </div>
