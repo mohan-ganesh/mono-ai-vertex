@@ -1,7 +1,9 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 90vh; /* Make the container take up the full viewport height */
+    height: 70vh; /* Make the container take up the full viewport height */
+    position: sticky;
+    bottom: 5px;
   }
   
   .chat-window {
