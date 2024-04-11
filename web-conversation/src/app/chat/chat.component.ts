@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
       if (response.modelResponse.answer) {
         const currentdate = new Date();
         const formattedDate = currentdate.toLocaleString();
-        let result = response.modelResponse.answer + " Generated at " + formattedDate + ".";
+        let result = response.modelResponse.answer + " [Generated at " + formattedDate + "].";
         this.messages.push({ content: result, isUser: false });
       }
     });

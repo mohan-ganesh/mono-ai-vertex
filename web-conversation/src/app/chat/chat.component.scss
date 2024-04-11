@@ -1,94 +1,87 @@
 .chat-container {
-    display: flex;
-    flex-direction: column;
-    height: 70vh; /* Make the container take up the full viewport height */
-    //position: sticky;
-    bottom: 5px;
-    flex-basis: 100%;
-  }
-  
-  .chat-window {
-    //flex: 1; /* Make the chat window take up remaining space */
-    // overflow: auto; /* Allow vertical scrolling if needed */
-    border: 0px solid #ccc; /* Optional: Add a border for visual clarity */
-    padding: 10px;
-    border-radius: 5px; /* Set border radius to 10px to make it curved */
-    /*
+  display: flex;
+  flex-direction: column;
+  height: 70vh; /* Make the container take up the full viewport height */
+  //position: sticky;
+  bottom: 5px;
+  flex-basis: 100%;
+}
+
+.chat-window {
+  //flex: 1; /* Make the chat window take up remaining space */
+  // overflow: auto; /* Allow vertical scrolling if needed */
+  border: 0px solid #ccc; /* Optional: Add a border for visual clarity */
+  padding: 10px;
+  border-radius: 5px; /* Set border radius to 10px to make it curved */
+  /*
     
     */
-    flex-basis: auto;
-    display: flex;           
-    flex-direction:column-reverse;
-  }
-  
+  flex-basis: auto;
+  display: flex;
+  flex-direction: column-reverse;
+}
 
-  .input-area {
-    display: flex;
-    align-items: center;    
-    padding: 10px;
-    box-sizing: border-box;
-    /*background-color: #f0f0f0; /* Optional: Add a background color */
-  }
-  
-  .input-area input {
-    flex: 1; /* Make the input take up remaining space */
-    margin-right: 10px; /* Add some spacing between input and button */
-  }
-  
+.input-area {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  /*background-color: #f0f0f0; /* Optional: Add a background color */
+}
 
-  .input-area textarea {
-    flex: 1; /* Make the textarea take up remaining space */
-    margin-right: 10px; /* Add some spacing between textarea and button */
-    border-radius: 15px; /* Set border radius to 10px to make it curved */
-    border: 1px solid #e3e9f3;
-    box-sizing: border-box;
-    font-family: Poppins, sans-serif;
-    font-size: 1.17em;
-  }
-  
-  
+.input-area input {
+  flex: 1; /* Make the input take up remaining space */
+  margin-right: 10px; /* Add some spacing between input and button */
+}
 
-  .user-message {
+.input-area textarea {
+  flex: 1; /* Make the textarea take up remaining space */
+  margin-right: 10px; /* Add some spacing between textarea and button */
+  border-radius: 15px; /* Set border radius to 10px to make it curved */
+  border: 1px solid #e3e9f3;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+  font-size: 1.17em;
+}
+
+.user-message {
   //original 10 but for testing make it 50
-  margin-bottom: 10px; 
-  border-bottom: 0px solid #ccc; 
+  margin-bottom: 10px;
+  border-bottom: 0px solid #ccc;
 }
 
 .bot-message {
-  padding-top: 5px;
-    margin-bottom: 10px;
-    border-top: 1px solid #a3c9ff;
-    bottom: 2px;
-    padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  border-top: 1px solid #a3c9ff;
+  bottom: 2px;
+  padding-bottom: 10px;
 }
 
-
-
 .input-area button {
-    background-color:#fc7307; /* Set button background color to yellow */
-    border:none ; /* Remove button border */
-    padding: 10px 20px; /* Add padding to button */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    border-radius: 10px; /* Set border radius to 10px to make it curved */
-    font-weight: bold; /* Make button text bold */
-    color: white
-    
-  }
-  
-  .input-area button:hover {
-    background-color: #fc7307; /* Change button background color on hover */
-  }
-  
-  .bot-message .gemini-icon {
-    width: 100px; /* Adjust width and height as needed */
-    height: 100px;
-    //border-radius: 25%;
-    background-image: url("/assets/3790368.png");
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+  background-color: #fc7307; /* Set button background color to yellow */
+  border: none; /* Remove button border */
+  padding: 10px 20px; /* Add padding to button */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  border-radius: 10px; /* Set border radius to 10px to make it curved */
+  font-weight: bold; /* Make button text bold */
+  color: white;
+}
 
-  textarea:focus { 
-    outline: none !important;
-    border-color: #719ECE;    
+.input-area button:hover {
+  background-color: #fc7307; /* Change button background color on hover */
+}
+
+.bot-message .gemini-icon {
+  width: 100px; /* Adjust width and height as needed */
+  height: 100px;
+  //border-radius: 25%;
+  background-image: url("/assets/3790368.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+textarea:focus {
+  outline: none !important;
+  border-color: #719ece;
 }
