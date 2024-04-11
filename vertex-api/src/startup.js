@@ -8,9 +8,28 @@ import bodyParser from "express";
 
 dotenv.config();
 
+// Define the allowed origins
+const allowedOrigins = [
+  "http://localhost:4200",
+  "https://semantic-serach-sn5rsq6dda-uc.a.run.app",
+  "https://semantic-serach-zqr4b4s3sa-uc.a.run.app",
+  "https://test.conversation.goengen.com",
+]; // Add your allowed domains here
+
+// Set up CORS options
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+
 const app = express();
 app.use(express.json());
-
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
