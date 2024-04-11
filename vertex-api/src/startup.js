@@ -24,7 +24,7 @@ async function startWebApp() {
   try {
     const PORT = process.env.PORT || 3000;
     await connectMongoDB();
-    await redisConnect();
+    //await redisConnect();
     routes(app);
     try {
       app.listen(PORT, () => {

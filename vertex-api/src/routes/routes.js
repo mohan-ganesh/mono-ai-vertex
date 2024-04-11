@@ -15,7 +15,7 @@ export default function routes(app) {
     res.json(response);
   });
 
-  router.post("/conversation", async (req, res) => {
+  router.post("/api/v1/conversation", async (req, res) => {
     const response = await conversationController(req, res);
     res.json(response);
   });
