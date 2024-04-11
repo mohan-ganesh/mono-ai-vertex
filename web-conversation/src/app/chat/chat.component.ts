@@ -27,7 +27,10 @@ export class ChatComponent implements OnInit {
     this.ChatService.sendMessage(trimmedMessage).subscribe(response => {
 
       if (response.modelResponse.answer) {
-        this.messages.push({ content: response.modelResponse.answer, isUser: false });
+        const currentdate = new Date();
+        const formattedDate = currentdate.toLocaleString();
+        let result = response.modelResponse.answer + " Generated at " + formattedDate + ".";
+        this.messages.push({ content: result, isUser: false });
       }
     });
   }
