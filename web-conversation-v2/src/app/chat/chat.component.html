@@ -1,0 +1,37 @@
+<div class="parent-container">
+    <div class="header">
+        <img src="/assets/engen-fullcolor-horizontal.png" alt="enGen Logo">
+    </div>
+    <div class="chat-container" #chatContainer>
+
+        <div *ngFor="let message of messages">
+            <div *ngIf="message.isUser" class="user-message">
+                <span class="icon-engen"></span>
+                <span class="icon-engen-user"><b>You</b><br></span>
+                <span class="user-message-content">{{ message.content }}</span>
+            </div>
+            <div *ngIf="!message.isUser" class="bot-message">
+                <span class="icon-gemini"></span>
+                <span class="icon-engen-system"><b>Gemini</b><br></span>
+                <span class="bot-message-content">{{ message.content }}</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="chat-input">
+        <textarea class="chat-textarea" rows="3" [(ngModel)]="newMessage" placeholder="enter your prompt here..."
+            (keyup.enter)="sendMessage(newMessage)"></textarea>
+        <button class="send-button" (click)="sendMessage(newMessage)">Send</button>
+    </div>
+
+
+
+    <div class="footer">
+        Copyright
+    </div>
+
+
+
+
+</div>
