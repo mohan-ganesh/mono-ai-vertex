@@ -14,6 +14,7 @@ const allowedOrigins = [
   "https://semantic-serach-sn5rsq6dda-uc.a.run.app",
   "https://semantic-serach-zqr4b4s3sa-uc.a.run.app",
   "https://test.conversation.goengen.com",
+  "https://web-conversation-v2-sn5rsq6dda-uc.a.run.app/",
 ]; // Add your allowed domains here
 
 // Set up CORS options
