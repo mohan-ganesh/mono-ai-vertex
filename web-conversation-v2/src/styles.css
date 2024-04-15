@@ -22,8 +22,9 @@ html {
 }
 
 .chat-container {
-  flex: 0 0 60%;
-  height: 60%;
+  /**flex: 0 0 60%; 
+  height: 60%; 88**/
+  margin-top: auto;
   overflow-y: auto;
   overflow: auto;
   padding-left: 20px;

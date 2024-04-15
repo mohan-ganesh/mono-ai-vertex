@@ -27,6 +27,7 @@ import { createRetrievalChain } from "langchain/chains/retrieval";
 export async function conversationController(req, res, _) {
   console.log("start - conversationController(req,res,_)");
   let modelResponse = null;
+  let modelResponse2 = null;
   let sessionId = null;
 
   try {
@@ -52,15 +53,40 @@ export async function conversationController(req, res, _) {
         ],
       });
 
+      const model_1_5 = new ChatGoogleGenerativeAI({
+        verbose: false,
+        modelName: "gemini-1.5-pro-preview-0409",
+        maxOutputTokens: 2048,
+        temperature: 0.9,
+        safetySettings: [
+          {
+            category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+            threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+          },
+        ],
+      });
+
       const vectorstore = await getMongoVectorStore();
 
       const retriever = vectorstore.asRetriever();
 
       const questionPrompt = ChatPromptTemplate.fromTemplate(`
+    Highmark is health insurance company that offers health insurance.
+    You are acting as a Highmark health insurance benefit experts.
     Answer the user's question from the following context to your best to describe as much as you can:
     {context}
     Question: {input}    
     `);
+
+      const questionPrompt2 = ChatPromptTemplate.fromTemplate(`
+    Use the following pieces of context to answer the question at the end.
+    If you do not know the anser, say at this time i don't i have knowledge about the piece of information.
+    Use two or more sentences and keep the answer as concise as possible.
+    {context}
+    Question: {input}    
+    `);
+
+      /** First chain starts */
 
       const chain = await createStuffDocumentsChain({
         llm: model,
@@ -75,9 +101,28 @@ export async function conversationController(req, res, _) {
       const response = await retrievalChain.invoke({
         input: query,
       });
-      console.log(response);
-
       modelResponse = response;
+
+      console.log("model response " + modelResponse);
+      /** First chain ends */
+
+      /*** Second Chain Starts */
+      const chain2 = await createStuffDocumentsChain({
+        llm: model,
+        prompt: questionPrompt2,
+      });
+
+      const retrievalChain2 = await createRetrievalChain({
+        combineDocsChain: chain2,
+        retriever: retriever,
+      });
+
+      const response2 = await retrievalChain2.invoke({
+        input: query,
+      });
+      modelResponse2 = response2;
+      console.log("model response 2" + modelResponse2);
+      /*** Second Chain Ends */
     } else {
       res.status(400).send("missing payload term");
       return;
@@ -87,5 +132,5 @@ export async function conversationController(req, res, _) {
     console.error(error);
   }
 
-  return { sessionId, modelResponse };
+  return { sessionId, modelResponse, modelResponse2 };
 }

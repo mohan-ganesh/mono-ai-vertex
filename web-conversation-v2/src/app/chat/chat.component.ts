@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../services/chat-service.service';
 import { ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -60,16 +61,23 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         let result = response.modelResponse.answer + " [Generated at " + formattedDate + "].";
         this.messages.push({ content: result, isUser: false });
       }
+
+      if (response.modelResponse2.answer) {
+        const currentdate = new Date();
+        const formattedDate = currentdate.toLocaleString();
+        let result2 = response.modelResponse2.answer + " [Generated at " + formattedDate + "].";
+        this.messages.push({ content2: result2, isUser: false });
+
+      }
+
     });
 
 
   }
 
   scrollToBottom() {
-    console.log("im being called");
-    console.log('im-onInit' + document.querySelector('.chat-container'));
-    let chatContainer = document.querySelector('.chat-container');
 
+    let chatContainer = document.querySelector('.chat-container');
   }
 }
 
