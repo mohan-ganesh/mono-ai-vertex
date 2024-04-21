@@ -133,9 +133,10 @@ icon-engen-user {
 .bot-message-content {
   padding-top: 5px;
   padding-left: 24px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   box-sizing: border-box;
   line-height: 1.5;
+  box-sizing: border-box;
 }
 
 .header img {
