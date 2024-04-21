@@ -2,7 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../services/chat-service.service';
 import { ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
-
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { CustomMarkupPipe } from '../directives/CustomMarkupPipe';
 
 @Component({
   selector: 'app-chat',
@@ -17,13 +18,18 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   newMessage: string = ''; // Property to bind with the input
 
 
-  constructor(private ChatService: ChatService) { }
+  constructor(private ChatService: ChatService, private sanitizer: DomSanitizer) { }
+
+  sanitizeHtml(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+
   ngAfterViewChecked(): void {
-    console.log(this.chatContainer);
-    console.log(this.chatContainer?.nativeElement);
+    //console.log(this.chatContainer);
+    //console.log(this.chatContainer?.nativeElement);
     try {
       if (this.chatContainer) {
-        console.log('try to scroll');
+        //console.log('try to scroll');
         //this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
         const scrollContainer = this.chatContainer.nativeElement;
         scrollContainer.scrollTop = scrollContainer.scrollHeight;
@@ -58,14 +64,14 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       if (response.modelResponse.answer) {
         const currentdate = new Date();
         const formattedDate = currentdate.toLocaleString();
-        let result = response.modelResponse.answer + " [Generated at " + formattedDate + "].";
+        let result = response.modelResponse.answer + "<i> [Generated at " + formattedDate + "].</i>";
         this.messages.push({ content: result, isUser: false });
       }
 
       if (response.modelResponse2.answer) {
         const currentdate = new Date();
         const formattedDate = currentdate.toLocaleString();
-        let result2 = response.modelResponse2.answer + " [Generated at " + formattedDate + "].";
+        let result2 = response.modelResponse2.answer + "<i> [Generated at " + formattedDate + "]. </i>";
         this.messages.push({ content2: result2, isUser: false });
 
       }

@@ -8,6 +8,7 @@ html {
   height: 100vh; /* Set body height to fill viewport */
   font-family: Roboto, Arial, sans-serif; /* Use Arial font as backup */
   font-size: 14px;
+  line-height: 1.5;
 }
 
 .parent-container {
@@ -107,6 +108,11 @@ html {
   margin-right: 5px; /* Adjust as needed */
 }
 
+.bot-pad {
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
 .icon-engen-system,
 icon-engen-user {
   padding-top: 5px;
@@ -128,6 +134,8 @@ icon-engen-user {
   padding-top: 5px;
   padding-left: 24px;
   padding-bottom: 10px;
+  box-sizing: border-box;
+  line-height: 1.5;
 }
 
 .header img {

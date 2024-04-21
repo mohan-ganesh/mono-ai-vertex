@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http'
+import { CustomMarkupPipe } from './directives/CustomMarkupPipe'
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent
+    ChatComponent,
+    CustomMarkupPipe
   ],
   imports: [
     BrowserModule,
