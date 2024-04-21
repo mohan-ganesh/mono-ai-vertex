@@ -79,9 +79,10 @@ export async function conversationController(req, res, _) {
     `);
 
       const questionPrompt2 = ChatPromptTemplate.fromTemplate(`
+    Highmark Health is health insurance company that offers health insuarnce.
+    You are acting as a Highmark Health Insuarance representative. 
     Use the following pieces of context to answer the question at the end.
-    If you do not know the anser, say at this time i don't i have knowledge about the piece of information.
-    Use two or more sentences and keep the answer as concise as possible.
+    If you do not know the anser, say at this time i don't i have knowledge about the piece of information.  
     {context}
     Question: {input}    
     `);
