@@ -74,6 +74,7 @@ export async function conversationController(req, res, _) {
     Highmark is health insurance company that offers health insurance.
     You are acting as a Highmark health insurance benefit experts.
     Answer the user's question from the following context to your best to describe as much as you can:
+    If you do not know the anser, say at this time i don't i have knowledge about the piece of information with a error code HMK001*.   
     {context}
     Question: {input}    
     `);
@@ -105,24 +106,27 @@ export async function conversationController(req, res, _) {
       modelResponse = response;
 
       console.log("model response " + modelResponse);
+
       /** First chain ends */
 
       /*** Second Chain Starts */
-      const chain2 = await createStuffDocumentsChain({
-        llm: model,
-        prompt: questionPrompt2,
-      });
+      if (modelResponse.answer.includes("HMK001")) {
+        const chain2 = await createStuffDocumentsChain({
+          llm: model,
+          prompt: questionPrompt2,
+        });
 
-      const retrievalChain2 = await createRetrievalChain({
-        combineDocsChain: chain2,
-        retriever: retriever,
-      });
+        const retrievalChain2 = await createRetrievalChain({
+          combineDocsChain: chain2,
+          retriever: retriever,
+        });
 
-      const response2 = await retrievalChain2.invoke({
-        input: query,
-      });
-      modelResponse2 = response2;
-      console.log("model response 2" + modelResponse2);
+        const response2 = await retrievalChain2.invoke({
+          input: query,
+        });
+        modelResponse = response2;
+        console.log("model response 2" + modelResponse);
+      }
       /*** Second Chain Ends */
     } else {
       res.status(400).send("missing payload term");
@@ -133,5 +137,5 @@ export async function conversationController(req, res, _) {
     console.error(error);
   }
 
-  return { sessionId, modelResponse, modelResponse2 };
+  return { sessionId, modelResponse };
 }
