@@ -32,7 +32,7 @@ export async function proConversationController(req, res, _) {
 
   try {
     let { query } = req.body;
-    console.log("start - conversationController() query: ", query);
+    console.log("start - proConversationController() query: ", query);
 
     if (query !== null && query !== undefined) {
       sessionId = req.headers["sessionid"];
@@ -42,9 +42,9 @@ export async function proConversationController(req, res, _) {
 
       const model_1_5 = new ChatGoogleGenerativeAI({
         verbose: true,
-        modelName: "gemini-1.5-pro-preview-0409",
+        modelName: "gemini-1.5-pro-latest",
         maxOutputTokens: 8192,
-        temperature: 0.9,
+        temperature: 0.8,
         safetySettings: [
           {
             category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -69,11 +69,14 @@ export async function proConversationController(req, res, _) {
 
       const questionPrompt2 = ChatPromptTemplate.fromTemplate(`
     Use the following pieces of context to answer the question at the end.
-    If you do not know the anser, say at this time i don't i have knowledge about the piece of information.
+    If you do not know the anser, say at this time i don't have knowledge about the piece of information.
     Use two or more sentences and keep the answer as concise as possible.
     {context}
     Question: {input}    
     `);
+
+      const systemMessage =
+        "At this time i don't have knowledge about the piece of information";
 
       /** First chain starts */
 
@@ -90,6 +93,12 @@ export async function proConversationController(req, res, _) {
       const response = await retrievalChain.invoke({
         input: query,
       });
+
+      //when safety settings are medium, answer will be empty.
+      if (response && response.answer.length === 0) {
+        response.answer = systemMessage;
+      }
+
       modelResponse = response;
 
       console.log("model response " + modelResponse);
@@ -103,5 +112,5 @@ export async function proConversationController(req, res, _) {
     console.error(error);
   }
 
-  return { sessionId, modelResponse, modelResponse2 };
+  return { sessionId, modelResponse };
 }

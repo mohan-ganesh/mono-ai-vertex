@@ -74,7 +74,7 @@ export async function conversationController(req, res, _) {
     Highmark is health insurance company that offers health insurance.
     You are acting as a Highmark health insurance benefit experts.
     Answer the user's question from the following context to your best to describe as much as you can:
-    If you do not know the anser, say at this time i don't i have knowledge about the piece of information with a error code HMK001*.   
+    If you do not know the answer, say at this time i don't  have knowledge about the piece of information with a error code HMK001*.   
     {context}
     Question: {input}    
     `);
@@ -83,7 +83,7 @@ export async function conversationController(req, res, _) {
     Highmark Health is health insurance company that offers health insuarnce.
     You are acting as a Highmark Health Insuarance representative. 
     Use the following pieces of context to answer the question at the end.
-    If you do not know the anser, say at this time i don't i have knowledge about the piece of information.  
+    If you do not know the anser, say at this time i don't have knowledge about the piece of information.  
     {context}
     Question: {input}    
     `);
