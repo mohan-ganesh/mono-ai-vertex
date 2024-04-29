@@ -14,6 +14,7 @@ dotenv.config();
 const allowedOrigins = [
   "http://localhost:4200",
   "https://test.conversation.goengen.com",
+  "https://test.helpdesk.goengen.com",
   "https://web-conversation-v2-sn5rsq6dda-uc.a.run.app",
 ]; // Add your allowed domains here
 
