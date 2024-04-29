@@ -40,7 +40,7 @@ export async function conversationController(req, res, _) {
   let modelResponse = null;
   let sessionId = null;
   let tempId = req.headers["x-temp-id"];
-
+  console.log("query id " + tempId);
   const { caller, callercity, callerstate, callerzip } = req.headers;
   if (caller) {
     messages.push({
@@ -77,7 +77,7 @@ export async function conversationController(req, res, _) {
       if (!sessionId || sessionId == "null" || sessionId == "undefined") {
         sessionId = uuidv4();
       }
-      if (!tempId || tempId == "null") {
+      if (!tempId || tempId == "null" || tempId == "-1") {
         //tempId = uuidv4();
         tempId = await insertDocument({ messages });
       }
@@ -132,6 +132,12 @@ export async function conversationController(req, res, _) {
                 JSON.parse(choice.message["function_call"].arguments)
               );
               functionResponse = JSON.stringify(confirm);
+              break;
+
+            case "create_new_query_id":
+              console.log(choice.message["function_call"].arguments);
+              tempId = await await insertDocument({ messages });
+              functionResponse = JSON.stringify(tempId);
               break;
 
             default:

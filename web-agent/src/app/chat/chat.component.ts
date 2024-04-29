@@ -4,7 +4,7 @@ import { ChatService } from '../services/chat-service.service';
 import { ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CustomMarkupPipe } from '../directives/CustomMarkupPipe';
-
+import { SessionStorageServiceService } from "../services/session-storage-service.service"
 
 @Component({
   selector: 'app-chat',
@@ -21,7 +21,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   newMessage: string = ''; // Property to bind with the input
 
 
-  constructor(private ChatService: ChatService, private sanitizer: DomSanitizer) { }
+  constructor(private ChatService: ChatService, private sanitizer: DomSanitizer, private sessionStorageService: SessionStorageServiceService) { }
 
   sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
@@ -74,8 +74,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
 
         const tempId = response.tempId;
-
-
+        if (tempId != undefined || tempId != null) {
+          console.log('set the query id ' + tempId);
+          this.sessionStorageService.setValue("queryId", tempId);
+        }
 
         this.messages.push({ content: result, isUser: false });
       }

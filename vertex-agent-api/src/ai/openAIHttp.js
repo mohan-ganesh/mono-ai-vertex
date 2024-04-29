@@ -4,6 +4,7 @@ import findMember from "../functions/member-finder.js";
 import createMember from "../functions/member-create.js";
 import lookupAppointments from "../functions/appointment-slots.js";
 import confirmAppointment from "../functions/appointment-confirm.js";
+import queryId from "../functions/query-id.js";
 import { findOneDocument, insertDocument, updateDocument } from "../db/db.js";
 dotenv.config();
 
@@ -23,12 +24,14 @@ export default async function getOpenAIResponse(tempId, query) {
     let document = await findOneDocument(tempId);
     let requestBody = {
       model: "gpt-3.5-turbo-0613",
+
       messages: document.messages,
       functions: [
         findMember,
         createMember,
         lookupAppointments,
         confirmAppointment,
+        queryId,
       ],
     };
     const response = await axios.post(`${API_URL}`, requestBody, {

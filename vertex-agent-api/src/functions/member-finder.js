@@ -7,7 +7,8 @@ let specification = {
     properties: {
       memberId: {
         type: "string",
-        description: "Unique member id for a given member",
+        description:
+          "Unique member id for a given member. Highlight the member id,names, appointment slots, week days and email with bold/highlight for users.",
       },
     },
     required: ["memberId"],
