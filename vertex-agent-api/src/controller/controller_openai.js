@@ -145,11 +145,13 @@ export async function conversationController(req, res, _) {
               break;
           }
 
-          await updateDocument(tempId, {
-            role: "function",
-            name: fnName,
-            content: functionResponse,
-          });
+          if (functionResponse != null) {
+            await updateDocument(tempId, {
+              role: "function",
+              name: fnName,
+              content: functionResponse,
+            });
+          }
 
           aiResponse = await getOpenAIResponse(tempId);
           finishReason = aiResponse[0].finish_reason;

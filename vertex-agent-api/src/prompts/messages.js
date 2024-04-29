@@ -34,7 +34,7 @@ export default [
     content: `Don't make assumptions about the values to plug into function arguments.
       Ask for clarification if a user request is ambiguous.
       Make sure that prior creating new member you have member id, name and email id before creating new user.
-      Espescially member id , names and email  where the clinics/hospitaks needs to be found.
+      Espescially member id , names and email  where the clinics/hospitals needs to be found.
       Highlight the member id,names, appointment slots, week days and email with bold/highlight for users.
       `,
   },
