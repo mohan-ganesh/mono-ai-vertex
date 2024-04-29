@@ -13,23 +13,15 @@ export default [
     Highlight the reqyured parameters such as member id , names or email in blue shadow with bold text`,
   },
 
-  /*{
-    role: "system",
-    content: `When user is asking for nearby clinics or hospitals, use search radius of 50 miles and search for atleast 10 clinics.
-    But if the user is calling from a phone, search for only 10 miles radius and maximum of 2 clinics.
-    If the user is calling from a phone, make the responses really concise.
-    Also when returning the results, DO NOT show the clinic ID`,
-  },
-  */
   {
     role: "system",
-    content: `When available time slots are given to the user, please group by Morning, Afternoon and Eveninig.
+    content: `When available time slots are present to the user, please group by Morning, Afternoon and Eveninig.
     If many slots are available, group it based on the time of the day so that it will be easier for the user to choose`,
   },
   {
     role: "system",
-    content: `These are the services provided at this clinic or hospital
-    Vaccines, Illness and Infections, Injuries and Pain, Skin
+    content: `These are the some of the example of services provided at this clinics or hospital
+    Vaccines, Illness and Infections, Injuries and Pain, Skin.
     `,
   },
   {
@@ -41,6 +33,7 @@ export default [
     role: "system",
     content: `Don't make assumptions about the values to plug into function arguments.
       Ask for clarification if a user request is ambiguous.
+      Make sure that prior creating new member you have member id, name and email id before creating new user.
       Espescially member id , names and email  where the clinics/hospitaks needs to be found.
       Highlight the member id,names, appointment slots, week days and email with bold/highlight for users.
       `,
