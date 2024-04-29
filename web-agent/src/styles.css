@@ -25,6 +25,7 @@ html {
   display: flex;
   padding: 0 1%;
   color: #3e8e41;
+  font-weight: bold;
 }
 
 .chat-container {
