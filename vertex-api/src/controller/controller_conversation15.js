@@ -44,7 +44,7 @@ export async function proConversationController(req, res, _) {
         verbose: true,
         modelName: "gemini-1.5-pro-latest",
         maxOutputTokens: 8192,
-        temperature: 0.8,
+        temperature: 0.6,
         safetySettings: [
           {
             category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -52,8 +52,6 @@ export async function proConversationController(req, res, _) {
           },
         ],
       });
-
-      console.log(JSON.stringify(model_1_5));
 
       const vectorstore = await getMongoVectorStore();
 
