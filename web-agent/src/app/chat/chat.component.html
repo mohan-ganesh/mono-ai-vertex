@@ -13,8 +13,8 @@
                 <span class="user-message-content">{{ message.content }}</span>
             </div>
             <div *ngIf="!message.isUser" class="bot-message">
-                <span class="icon-gemini"></span>
-                <span class="icon-engen-system"><b>ChatGPT</b><br></span>
+                <span class="icon-openai"></span>
+                <span class="icon-engen-system"><b>OpenAI</b><br></span>
                 <div class="bot-message-content" [innerHTML]="message.content | customMarkup"
                     style="white-space: pre-wrap;"></div>
                 <br>

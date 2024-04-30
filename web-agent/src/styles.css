@@ -114,6 +114,17 @@ html {
   margin-right: 5px; /* Adjust as needed */
 }
 
+.icon-openai {
+  /* Your icon styles */
+  background-image: url("/assets/chat-gpt.png"); /* Example background color */
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle; /* Adjust as needed */
+  border-radius: 50%; /* Creates a circular shape */
+  margin-right: 5px; /* Adjust as needed */
+}
+
 .bot-pad {
   box-sizing: border-box;
   line-height: 1.5;
