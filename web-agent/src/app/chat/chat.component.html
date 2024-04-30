@@ -14,7 +14,7 @@
             </div>
             <div *ngIf="!message.isUser" class="bot-message">
                 <span class="icon-gemini"></span>
-                <span class="icon-engen-system"><b>Gemini</b><br></span>
+                <span class="icon-engen-system"><b>ChatGPT</b><br></span>
                 <div class="bot-message-content" [innerHTML]="message.content | customMarkup"
                     style="white-space: pre-wrap;"></div>
                 <br>
@@ -26,7 +26,8 @@
     </div>
 
     <div class="chat-input">
-        <textarea class="chat-textarea" rows="3" [(ngModel)]="newMessage" placeholder="enter your prompt here..."
+        <textarea class="chat-textarea" rows="3" [(ngModel)]="newMessage"
+            placeholder="enter your query here. example I would like to make an appointment for sore throat. could you help me with making an appointment?"
             (keyup.enter)="sendMessage(newMessage)"></textarea>
         <button class="send-button" (click)="sendMessage(newMessage)">Send</button>
     </div>
