@@ -68,7 +68,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         this.messages.push({ content: result, isUser: false });
       }
 
-      if (response.modelResponse2.answer) {
+      if (response.modelResponse2) {
         const currentdate = new Date();
         const formattedDate = currentdate.toLocaleString();
         let result2 = response.modelResponse2.answer + "<i> [Generated at " + formattedDate + "]. </i>";
