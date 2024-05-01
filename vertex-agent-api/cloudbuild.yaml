@@ -24,6 +24,7 @@ steps:
       - "$_DEPLOY_REGION"
       - "$_AUTH_OPTION"
       - "--session-affinity"
+      - "--set-env-vars=$_CLOUD_RUN_ENV_VARS"
       - "--set-secrets=$_CLOUD_RUN_SECRET_ENV_VARS"
 
 images:
@@ -35,4 +36,5 @@ substitutions:
   _PLATFORM: "managed"
   _DEPLOY_REGION: "us-central1"
   _AUTH_OPTION: "--allow-unauthenticated"
+  _CLOUD_RUN_ENV_VARS: "MEMBER_FINDER_DOMAIN=https://test.conversation.goengen.com"
   _CLOUD_RUN_SECRET_ENV_VARS: "ATLAS_URI=atlas_uri:latest,EMBEDDING_ENDPOINT=embedding_endpoint:latest,MONGODB_URI=mongodb_uri:latest,REDIS_USERNAME=redis_username:latest,REDIS_PASSWORD=redis_password:latest,GOOGLE_API_KEY=GOOGLE_API_KEY:latest,OPENAI_API_KEY=OPENAI_API_KEY:latest"
