@@ -4,7 +4,9 @@ import { ChatService } from '../services/chat-service.service';
 import { ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CustomMarkupPipe } from '../directives/CustomMarkupPipe';
-
+import { ActivatedRoute } from '@angular/router';
+import { SessionStorageServiceService } from "../services/session-storage-service.service"
+import { environment } from "../../environments/environment"
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -16,9 +18,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   messages: any[] = [];
   newMessage: string = ''; // Property to bind with the input
+  queryParams: any;
 
-
-  constructor(private ChatService: ChatService, private sanitizer: DomSanitizer) { }
+  constructor(private ChatService: ChatService, private sanitizer: DomSanitizer, private route: ActivatedRoute, private sessionStorageService: SessionStorageServiceService) { }
 
   sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
@@ -46,6 +48,17 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     //console.log('im-onInit' + document.querySelector('.chat-container'))
     //this.chatContainer = document.querySelector('.chat-container');
     //console.log("reference of " + this.chatContainer);
+
+    this.route.queryParams.subscribe(params => {
+      // Read the query parameters
+      this.queryParams = params;
+      // Set the value in session storage
+      if (this.queryParams.type) {
+        this.sessionStorageService.setValue(environment.api_endpoint, this.queryParams.type);
+      } else {
+        this.sessionStorageService.setValue(environment.api_endpoint, "default");
+      }
+    });
   }
 
 

@@ -169,5 +169,5 @@ export async function conversationController(req, res, _) {
   } catch (error) {
     console.error(error);
   }
-  return { sessionId, modelResponse };
+  return { sessionId, modelResponse, tempId };
 }

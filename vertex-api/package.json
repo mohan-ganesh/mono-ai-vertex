@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/startup.js",
+    "start": "nodemon src/startup.js",
     "ping": "node src/ping-gemini.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,6 +27,7 @@
     "express": "^4.19.2",
     "langchain": "0.1.35",
     "mongodb": "^6.5.0",
+    "nodemon": "^3.1.0",
     "pdf-parse": "^1.1.1",
     "redis": "^4.6.13",
     "uuid": "^9.0.1"
