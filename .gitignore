@@ -3,3 +3,4 @@ node_modules
 chat-sheet.txt
 .vscode
 .DS_Store
+*.env
