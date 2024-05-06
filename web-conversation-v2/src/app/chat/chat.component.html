@@ -20,14 +20,18 @@
                 <span class="bot-message-content" [innerHTML]="message.content2 | customMarkup"></span>
             </div>
 
-
+            <div *ngIf="loading" class="loading-container">
+                <div *ngIf="loading" class="loading-animation"></div>
+            </div>
         </div>
+
     </div>
 
     <div class="chat-input">
-        <textarea class="chat-textarea" rows="3" [(ngModel)]="newMessage" placeholder="enter your prompt here..."
+        <textarea class="chat-textarea" rows="3" [(ngModel)]="newMessage" (input)="userInteracted = true"
+            [placeholder]="userInteracted ? '':' enter your prompt here...'"
             (keyup.enter)="sendMessage(newMessage)"></textarea>
-        <button class="send-button" (click)="sendMessage(newMessage)">Send</button>
+        <button class="send-button" (click)="sendMessage(newMessage)" [disabled]="loading">Send</button>
     </div>
 
 

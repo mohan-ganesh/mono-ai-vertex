@@ -163,3 +163,42 @@ textarea:focus {
   border-color: #719ece;
   box-shadow: 0 0 3px #719ece;
 }
+
+.loading-container {
+  position: fixed;
+  top: 76%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*/animation: spin 3s linear infinite; 
+border-top: 2px solid #dde0e2;
+border: 2px solid #267326;*/
+.loading-animation {
+  width: 25px;
+  height: 25px;
+  background-color: #3e8e41;
+  border-radius: 50%;
+  animation: zoomInOut 2s infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

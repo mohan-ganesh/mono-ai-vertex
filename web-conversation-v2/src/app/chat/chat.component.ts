@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, Renderer2 } from '@angular/core';
 import { ChatService } from '../services/chat-service.service';
 import { ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -19,30 +19,42 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   messages: any[] = [];
   newMessage: string = ''; // Property to bind with the input
   queryParams: any;
+  loading: boolean = false;
+  userInteracted: boolean = false;
 
-  constructor(private ChatService: ChatService, private sanitizer: DomSanitizer, private route: ActivatedRoute, private sessionStorageService: SessionStorageServiceService) { }
+  constructor(private ChatService: ChatService, private sanitizer: DomSanitizer, private route: ActivatedRoute, private sessionStorageService: SessionStorageServiceService, private renderer: Renderer2) { }
 
+  /**
+   * 
+   * @param html 
+   * @returns 
+   */
   sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
+  /**
+   * 
+   */
   ngAfterViewChecked(): void {
-    //console.log(this.chatContainer);
-    //console.log(this.chatContainer?.nativeElement);
-    try {
-      if (this.chatContainer) {
-        //console.log('try to scroll');
-        //this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
-        const scrollContainer = this.chatContainer.nativeElement;
-        scrollContainer.scrollTop = scrollContainer.scrollHeight;
-        scrollContainer.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
 
+    try {
+      console.log(window.innerWidth)
+      if (window.innerWidth > 768) {
+        if (this.chatContainer) {
+          const scrollContainer = this.chatContainer.nativeElement;
+          scrollContainer.scrollTop = scrollContainer.scrollHeight;
+          scrollContainer.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        }
       }
     } catch (error) {
       console.log(error);
     }
   }
 
+  /**
+   * 
+   */
   ngOnInit(): void {
     // Assuming you have a reference to the chat container element
     //console.log('im-onInit' + document.querySelector('.chat-container'))
@@ -63,7 +75,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
 
 
-
+  /**
+   * 
+   * @param message 
+   * @returns 
+   */
 
   sendMessage(message: string) {
     const trimmedMessage = message.trim();
@@ -72,7 +88,13 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.messages.push({ content: trimmedMessage, isUser: true });
     this.newMessage = ''; // Clear the input
 
+    // Set loading to true after 5 seconds
+    setTimeout(() => {
+      this.loading = true;
+    }, 3000);
+
     this.ChatService.sendMessage(trimmedMessage).subscribe(response => {
+      this.loading = false;
 
       if (response.modelResponse.answer) {
         const currentdate = new Date();
@@ -89,13 +111,18 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
       }
 
+    }, (error) => {
+      console.log("error occured", error);
+      this.loading = false;
     });
 
 
   }
 
+  /**
+   * 
+   */
   scrollToBottom() {
-
     let chatContainer = document.querySelector('.chat-container');
   }
 }
